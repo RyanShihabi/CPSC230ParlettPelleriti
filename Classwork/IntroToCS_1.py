@@ -1,5 +1,5 @@
 # Class Activities + Review (Class 1)
-
+print("Hello World")
 # Together------------------------------------------------
 
 # 0. Quiz!
@@ -27,3 +27,11 @@ binary:
 - 1
 - 8
 '''
+
+print(str(bin(17))[2:])
+print(str(bin(16))[2:])
+print(str(bin(256))[2:])
+print(str(bin(400))[2:])
+print(str(bin(2))[2:])
+print(str(bin(1))[2:])
+print(str(bin(8))[2:])
