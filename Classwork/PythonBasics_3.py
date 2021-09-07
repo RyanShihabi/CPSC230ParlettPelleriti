@@ -12,10 +12,13 @@
 '''
 
 x = 10
+print(type(x))
 
 '''
 2. Which of the types we covered (Int, Float, Boolean, String, Dict,
  List, Set) are collections? What's different about a collection?
+
+ String, Dict, list, set
 
 
 3. The == is the "equal to" operator, and it returns True if two objects
