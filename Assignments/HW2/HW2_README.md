@@ -7,4 +7,5 @@
 
 ### Deviations
 
-<p>Quadratic2.py: Used a try/catch statement to detect negative discriminants</p>
+<p>Quadratic/Quadratic2.py: Used a try/catch statement to detect negative discriminants</p>
+<p>sumConsec.py: Added a method to find the result recursively</p>
