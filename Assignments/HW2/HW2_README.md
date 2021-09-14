@@ -1,4 +1,4 @@
-# HW1
+# HW2
 
 <p>Ryan Shihabi</p>
 <p>2391307</p>
@@ -7,4 +7,4 @@
 
 ### Deviations
 
-<p>Celsius.py: Displayed both celsius and fahrenheit values to visualize conversion</p>
+<p>Quadratic2.py: Used a try/catch statement to detect negative discriminants</p>

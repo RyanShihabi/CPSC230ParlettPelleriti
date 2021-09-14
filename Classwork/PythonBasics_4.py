@@ -9,7 +9,7 @@
     # b. Floor Division
 # 3. Precedence/OOO
 
-10 + 2 ** 3 - (4+5) + 49/7 * 2
+print(10 + 2 ** 3 - (4+5) + 49/7 * 2)
 
 # What's the Answer? BONUS: will this be a float or int?
 # What Order should we go in?
@@ -23,7 +23,7 @@
 
 2. Check your answer using Python.'''
 
-# code
+print(4 * 2 * 4 + 6 ** 8 // 2 + 6 - 7 * 9 + (16 + 4))
 
 '''
 3. Rewrite this equation using more parentheses to make it a little
