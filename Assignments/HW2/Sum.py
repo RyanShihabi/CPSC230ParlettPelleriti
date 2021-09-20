@@ -1,12 +1,9 @@
 amount = int(input("How many numbers would you like to enter?\n"))
-
-while(amount <= 0):
-    amount = int(input("How many numbers would you like to enter?\n"))
-
 sum = 0
 
-for x in range(amount):
-    num = int(input("Enter a number: "))
+while amount > 0:
+    num = int(input("Enter a number to add: "))
     sum += num
+    amount -= 1
 
 print(f"Total: {sum}")
