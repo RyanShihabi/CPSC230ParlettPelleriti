@@ -4,8 +4,3 @@
 <p>2391307</p>
 <p>shihabi@chapman.edu</p>
 <p>CPSC 230-08</p>
-
-### Deviations
-
-<p>Quadratic/Quadratic2.py: Used a try/catch statement to detect negative discriminants</p>
-<p>sumConsec.py: Added a method to find the result recursively</p>
