@@ -18,11 +18,21 @@ the day of the week and use ifs/elifs/elses to print out where I should
 be based on what day it is (either Keck, Library, Swenson, or Home).
 '''
 
+day = input("DOTW: ")
+if day in ['T', 'Th']:
+    print("Library")
+elif day == 'F':
+    print("Office")
+else:
+    print("Home")
+
 '''
 2. Create some code that checks whether a number is even.
 If it is,  print "even", otherwise print "odd". If the number
 is 0, print "this is neither even, nor odd".
 '''
+
+
 
 '''
 3. Pretend you're writing some code for a convience store. Ask the user to
