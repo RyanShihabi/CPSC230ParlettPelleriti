@@ -1,6 +1,6 @@
 # grabbing intitial number
 initial = int(input("Enter a number: "))
-# This is for the fun way
+# This is for the recursive way
 recursive = initial
 # declaring sumConsec to store result
 sumConsec = 0
@@ -15,10 +15,10 @@ while initial > 0:
 # print the total of sumConsec
 print("Consecutive sum:", sumConsec)
 
-# ------ For fun ------
+# ------ For fun -------
 
 # Function that takes an int parameter and returns an int
-def sumConsecRecursive(n) -> int:
+def sumConsecRecursive(n: int) -> int:
     # define a base case to end stack of calculations
     if n == 1:
         # base case returns 1
