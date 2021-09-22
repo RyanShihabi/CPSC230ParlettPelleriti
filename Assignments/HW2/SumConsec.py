@@ -28,4 +28,5 @@ def sumConsecRecursive(x: int) -> int:
         return x + sumConsecRecursive(x-1)
 
 # print recrusive total of sum
+print("-"*5, "for fun", "-"*5)
 print("Recursive Sum:", sumConsecRecursive(recursive))
