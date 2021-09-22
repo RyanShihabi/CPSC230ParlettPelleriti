@@ -10,7 +10,7 @@ while((4 * a * c) > (b**2)):
     print("Please enter values that will return a positive discriminant")
 
     # prompts for variables a to c
-    a,b,c = int(input("a:")), int(input("b:")), int(input("c:"))
+    a, b, c = int(input("a:")), int(input("b:")), int(input("c:"))
 
 # calculate both positive and negative roots
 quadratic_p = ((-1*b) + math.sqrt(b**2 - 4*a*c))/(2*a)

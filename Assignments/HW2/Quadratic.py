@@ -1,7 +1,7 @@
 import math
 
 # getting input for a, b, and c values
-a,b,c = int(input("a:")), int(input("b:")), int(input("c:"))
+a, b, c = int(input("a:")), int(input("b:")), int(input("c:"))
 
 # checks if the left side of the subtraction is greater than/equal to the right side
 # negative discriminant check
