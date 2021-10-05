@@ -8,10 +8,10 @@ word = json.loads(requests.get("https://random-word-form.herokuapp.com/random/no
 # print(word)
 # print(questions["results"][1]["question"])
 
-d = {"n": {"n": "puzzle1", "e": "die", "s": "die", "w": "die"},
-    "e": {"n": "puzzle1", "e": "die", "s": "die", "w": "die"},
-    "s":{"n": "puzzle1", "e": "die", "s": "die", "w": "die"},
-    "w": {"n": "puzzle1", "e": "die", "s": "die", "w": "die"}}
+d = {"n": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
+    "e": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
+    "s":{"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
+    "w": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"}}
 
 input_count = 0
 dwarfs = ["doc", "bashful", "bneezy", "happy", "grumpy", "sleepy", "dopey"]
@@ -90,6 +90,15 @@ elif path == "puzzle3":
 elif path == "puzzle4":
     answer = int(input("Enter a prime number: "))
 
+    isPrime = False
+    prime_count = 0
+    for i in range(1, 10):
+        if answer % i != 0:
+            prime_count += 1
+    if prime_count == 9:
+        print("This is prime number")
+    else:
+        print("That is not a prime number")
     print("You have made it out alive")
 else:
     print(f"Sorry, {user_name}, you have died")

@@ -17,6 +17,7 @@ s1 = "My Name is Chelsea"
 s2 = "Her Favorite Football Team is Chelsea or maybe Man U."
 s3 = "Chelsea"
 s4 = "aelehC" # hint [::]
+print(s4[::-1])
 s5 = "Chelsea Parlett"
 
 '''
