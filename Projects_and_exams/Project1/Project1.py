@@ -9,9 +9,9 @@ word = json.loads(requests.get("https://random-word-form.herokuapp.com/random/no
 # print(questions["results"][1]["question"])
 
 d = {"n": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
-    "e": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
-    "s":{"north": "puzzle1", "east": "die", "south": "die", "west": "die"},
-    "w": {"north": "puzzle1", "east": "die", "south": "die", "west": "die"}}
+    "e": {"north": "puzzle3", "east": "die", "south": "die", "west": "die"},
+    "s":{"north": "puzzle2", "east": "die", "south": "die", "west": "die"},
+    "w": {"north": "puzzle4", "east": "die", "south": "die", "west": "die"}}
 
 input_count = 0
 dwarfs = ["doc", "bashful", "bneezy", "happy", "grumpy", "sleepy", "dopey"]
@@ -23,7 +23,7 @@ user_name = input("What is your name: ")
 #initial direction--------------------
 direction = input(f"\nWhich direction do you want to go, {user_name}?\nN, S, E, or W?\nEnter: ").lower()
 while direction not in "nsew":
-    direction = input(f"Enter a valid direction, {user_name}?\nN, S, E, or W\nEnter: ").lower()
+    direction = input(f"Enter a valid direction\nN, S, E, or W\nEnter: ").lower()
 
 path = d[direction]
 
@@ -40,9 +40,9 @@ input_count += 1
 
 #second direction---------------------
 
-direction = input(f"Enter a new direction, {user_name}?\nN, S, E, or W \nEnter: ").lower()
-while direction not in "nsew":
-    direction = input(f"Enter a valid direction, {user_name}?\nN, S, E, or W \nEnter: ").lower()
+direction = input(f"Enter a new direction, {user_name}?\nNorth, South, East, or West \nEnter: ").lower()
+while direction not in "northsoutheastwest":
+    direction = input(f"Enter a valid direction\nNorth, South, East, or West\nEnter: ").lower()
 
 question = questions["results"][input_count]["question"]
 answer = questions["results"][input_count]["correct_answer"][0].lower()
@@ -90,12 +90,11 @@ elif path == "puzzle3":
 elif path == "puzzle4":
     answer = int(input("Enter a prime number: "))
 
-    isPrime = False
     prime_count = 0
     for i in range(1, 10):
         if answer % i != 0:
             prime_count += 1
-    if prime_count == 9:
+    if prime_count == 8:
         print("This is prime number")
     else:
         print("That is not a prime number")
