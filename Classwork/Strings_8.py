@@ -6,7 +6,7 @@
 # 1. Creating Strings
 # 2. String Operations
 # 3. In
-
+"aeu" in "aeiou"
 # Classwork-----------------------------------------------
 '''
 1. Grab and print the name "Chelsea" from the following strings using string
@@ -55,4 +55,62 @@ He see me do mi dirt, dirt, dirt, dirt, dirt, dirt
 So me put in work, work, work, work, work, work
 When you ah gon' learn, learn, learn, learn, learn?
 Me nuh care if him hurt, hurt, hurt, hurt, hurting
+'''
+
+
+'''
+6. Write some code that asks a user to input a word that is at least 5 letters long.
+Continue to ask them for a word until they enter an empty string "". As they give
+you words, store the third letter  and the fifth letter in a string.
+
+Once they enter an empty string, print out the string of all the 3rd and 5th
+letters.
+
+For example if they give you the words "hello", "filth", "canning", "grown"
+
+your string should be "lolhnion"
+'''
+
+
+'''
+7. Ask the user to input two words of the SAME LENGTH. Using a WHILE loop, count
+how many letters are the same between the two strings. For example in spam and
+span, 3 of the letters (s,p,a) are the same. In the words bitter and better,
+5 of the letters are the same. Print out a message telling the user how many
+letters are the same.
+'''
+
+
+
+'''
+8. Write some code that asks the user for a string, removes the first and last character
+using string slicing, and prints it out.
+'''
+
+'''
+9. the function .isupper() checks if a string has all uppercase letters. It returns
+True if all the characters are uppercase, and False otherwise. Using a while
+loop to loop through the string below, count the number of uppercase letters.
+
+'''
+
+# example of .isupper()
+print("E".isupper())
+print("e".isupper())
+
+the_string = "When I was a Young Boy My Father Took Me Into The CITY to See A Marching BAND"
+
+
+'''
+10. Pretend your user is a Club Penguin player. Ask the user to input a message.
+Use the in operator to check if any of the following "bad words" are in the message
+a Club Penguin user is trying to type. If any of them are, print "You're BLOCKED". Otherwise
+print the message as is.
+
+BAD WORDS:
+- dang
+- gosh
+- shoot
+- fork
+- bench
 '''
