@@ -79,7 +79,7 @@ if path == "puzzle1":
     # tracking the dwarfs in an array
     selected = []
     dwarf_input = input("Name one of the seven dwarfs: ").lower()
-    # checking if input not already used, input is correct and the user has guessed two times
+    # checking if input not already used and input is correct
     if (dwarf_input not in selected) and (dwarf_input in dwarfs):
         selected.append(dwarf_input)
         dwarf_input = input("Correct! Name another one: ").lower()
@@ -119,9 +119,11 @@ elif path == "puzzle4":
     answer = int(input("Enter a prime number: "))
 
     prime_count = 0
+    # checking if every digit below 10 is not divisible
     for i in range(2, 10):
         if answer % i != 0:
             prime_count += 1
+    # when no numbers are divisible
     if prime_count == 8:
         print("This is a prime number")
     else:
