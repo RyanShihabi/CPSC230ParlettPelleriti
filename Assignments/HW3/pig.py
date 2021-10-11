@@ -14,9 +14,13 @@ while player < 100 and computer < 100:
         playerSum += roll
         action = input(f"\nRolled a {roll}, roll or hold (r/h)?\n")
         print()
-        while action != "h":
+        while action[0].lower() not in "hr":
+            action = input(f"\nPlease select to roll or hold the {roll} points (r/h)\n")
+
+        while action.lower() != "h":
             roll = random.randint(1,6)
             if roll == 1:
+                print("you have rolled a 1")
                 playerSum = 0
                 break
             else:
@@ -45,5 +49,6 @@ while player < 100 and computer < 100:
     computer += compSum
 
 winner = "Player" if (player >= 100 and computer < 100) else "Computer"
+points = player if (player >= 100 and computer < 100) else computer
 
-print(f"\nWinner: {winner} with {computer} points\n")
+print(f"\nWinner: {winner} with {points} points\n")
