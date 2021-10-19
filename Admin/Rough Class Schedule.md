@@ -64,15 +64,15 @@
 ### Class 9
   * For Loops (4.5-4.10)
       - Chapter 4
-  * Participation Activities Due (4.5-4.10)
+  * Quiz
+  * Participation Activities Due (4.5-4.11)
 
 ### Friday
-* Challenge Activities Due (4.5-4.10; 5.1-5.2)
+* Challenge Activities Due (4.5-4.11; 5.1-5.2)
 
 ## Week 6
 ### Class 10
   * Review
-  * Quiz
 
 ### Class 11
   * Exam 1
