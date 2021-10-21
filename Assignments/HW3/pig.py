@@ -26,7 +26,7 @@ while player < 50 and computer < 50:
             action = input(f"\nPlease select to roll or hold the {roll} points (r/h)\n")
 
         # continue to roll if inputted
-        while action.lower() != "h":
+        while action.lower() == "r":
             roll = random.randint(1,6)
             # when user rolls a 1
             if roll == 1:
