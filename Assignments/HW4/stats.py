@@ -14,6 +14,9 @@ def MMM():
         user_list.append(val)
         val = int(input("Enter a positive integer: "))
 
+    # sorting list
+    user_list = sorted(user_list)
+    print(user_list)
     # calculating mean with sum and length of array
     mean = sum/len(user_list)
 
