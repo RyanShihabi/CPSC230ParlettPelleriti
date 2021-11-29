@@ -1,1 +1,1 @@
-This is a message with a happy zebra
+This is my attempt of HW5 for CPSC-230
