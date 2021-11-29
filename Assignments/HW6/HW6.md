@@ -1,19 +1,8 @@
-# LIST.py
+# COMPLEX NUMBER
+Create a class called Complex() that represents a complex number. It should have two attributes, the `real` and the `imaginary` parts.
 
-Write a script that loops  through a list of lists in the form:
+Make three instance methods, add(), square() and multiply() that add and multiply these complex numbers. See the link below for more information on how addition/squaring, and multiplication work with complex numbers.
 
-```
-[["a", 7],["b", 8],["apple", "coin"]]
-```
+https://en.wikibooks.org/wiki/Algebra/Complex_Numbers
 
-and turns it into a dictionary with k:v for each list in the list.
-
-```
-{"a":7, "b":8, "apple": "coin"}
-```
-
-#  STORE.py
-Write some code  to store the name and price of items in a drug  store. Ask the user the name of the  item, and then the price, and store it in a dictonary. Keep asking them until  they type in "stop" for the name of an item.
-
-# HIGHEST.py
-Write code that prints out the 4 largest **Values** from any dictionary (Assume dictionary has at least 4 entries).
+At the end of your file, create at least two Complex() objects, and demonstrate the add(), square() and multiply() methods by calling them and printing their results.
