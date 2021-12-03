@@ -5,9 +5,6 @@ player_list = []
 selected = []
 columns = []
 
-print("Welcome!")
-print("Your options are")
-
 with open("players.csv", "r") as player_file:
     player_info = csv.reader(player_file, delimiter=",")
     line_count = 0
@@ -27,4 +24,10 @@ with open("players.csv", "r") as player_file:
 
 player_file.close()
 
-print(player_list)
+print("Welcome!")
+print("Your options are\n")
+
+for person in player_list:
+    print(f"{person['Name']} the {person['Class']}")
+
+choice = input("\nWho would you like to play?")
