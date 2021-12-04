@@ -106,9 +106,9 @@ while weapon_choice["Ideal"] != selected["Player"]["Class"]:
 
 selected["Player"]["Weapon"] = weapon_choice
 
-opponent_weapon = weapon_list[random.randint(0, len(weapon_list))]
+opponent_weapon = weapon_list[random.randint(0, len(weapon_list))-1]
 while opponent_weapon == choice:
-    opponent_weapon = weapon_list[random.randint(0, len(weapon_list))]
+    opponent_weapon = weapon_list[random.randint(0, len(weapon_list)-1)]
 
 for weapon in weapon_list:
     if weapon["Name"] == opponent_weapon:
@@ -168,4 +168,22 @@ for armor in armor_list:
 
 selected["Player"]["Armor"] = armor_choice
 
-print(selected["Player"]["Armor"])
+opponent_armor = armor_list[random.randint(0, len(armor_list)-1)]
+while opponent_armor == choice:
+    opponent_armor = armor_list[random.randint(0, len(armor_list)-1)]
+
+for armor in armor_list:
+    if armor["Name"] == opponent_armor:
+        opponent_armor = armor
+        break
+
+while opponent_armor["Name"] == selected["Player"]["Armor"]["Name"]:
+        opponent_armor = armor_list[random.randint(0, len(armor_list)-1)]
+        for armor in armor_list:
+            if armor["Name"] == opponent_armor:
+                opponent_armor = armor
+                break
+
+selected["Opponent"]["Armor"] = opponent_armor
+
+print(selected)
