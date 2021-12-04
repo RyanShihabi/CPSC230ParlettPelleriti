@@ -1,0 +1,11 @@
+﻿Name,Block_Min,Block_Max,Chance
+Leather,5,10,0.4
+Chainmail,5,10,0.4
+Steel,6,10,0.5
+Iron,8,9,0.6
+Copper,5,10,0.4
+Gold,7,10,0.4
+Cloth,3,12,0.8
+Wood,6,10,0.6
+Plated,3,14,0.9
+Lead,2,15,0.9
