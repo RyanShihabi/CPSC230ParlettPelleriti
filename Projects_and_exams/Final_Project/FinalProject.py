@@ -156,3 +156,16 @@ print("Here are your armor material options")
 for armor in armor_list:
     print(f"{armor['Name']} which blocks {armor['Block_Min']} to {armor['Block_Max']} damage {armor['Chance']*100}% of the time")
     armor_names.append(armor['Name'])
+
+armor_choice = input("\nChoose armor for your character: ")
+while armor_choice not in armor_names:
+    armor_choice = input("\nOnly enter the name to choose armor for your character: \n")
+
+for armor in armor_list:
+    if armor["Name"] == armor_choice:
+        armor_choice = armor
+        break
+
+selected["Player"]["Armor"] = armor_choice
+
+print(selected["Player"]["Armor"])
