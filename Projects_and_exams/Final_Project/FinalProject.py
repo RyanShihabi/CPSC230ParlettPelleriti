@@ -186,4 +186,106 @@ while opponent_armor["Name"] == selected["Player"]["Armor"]["Name"]:
 
 selected["Opponent"]["Armor"] = opponent_armor
 
-print(selected)
+def still_alive(player):
+    # array of death messages
+    death_messages = [f"Oh no, {player["Name"]} died", f"{player["Name"]} has died", f"{player["Name"]} has been defeated", f"{player["Name"]} loses in combat", f"{player["Name"]} falls to the ground", f"{player["Name"]} dies honorably"]
+    # check if health is 0
+    if player["Health"] == 0:
+        print(death_messages[random.randint(0, len(death_messages)-1)])
+        return False
+    return True
+
+# Step 7
+def player_turn(selected, attack_special):
+    # player 1
+    damage = 0
+    # when special attack is chosen
+    if attack_special:
+        # determine if cooldown is zero
+        if selected["Player"]["Turns_Since"] == 0:
+            print("\nSpecial Attack Used")
+            # assign random damage in range
+            damage = random.randint(selected["Player"]["Special_Attack_Min"], selected["Player"]["Special_Attack_Max"])
+            # assign health to zero if health becomes negative
+            selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
+            # set cooldown to max
+            selected["Player"]["Turns_Since"] = selected["Player"]["Cooldown"]
+        else:
+            print("\nSpecial Attack Attempted.")
+            print("Basic Attack Used")
+            # do random basic attack damage
+            damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+            # assign health to zero if health becomes negative
+            selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
+            # decrease cooldown by one
+            selected["Player"]["Turns_Since"] -= 1
+    else:
+        print("\nBasic Attack Used")
+        # do random basic attack damage
+        damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+        # assign health to zero if health becomes negative
+        selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
+        # decrease cooldown by one if not already at zero
+        selected["Player"]["Turns_Since"] = max(0, selected["Player"]["Turns_Since"]-1)
+
+    print(f"\n{selected["Player"]["Name"]} did {damage} damage this round!")
+
+    print(f"{selected["Opponent"]["Name"]} has {selected["Opponent"]["Health"]} HP left.\n")
+
+    # stop function if player has reached zero health
+    if still_alive(selected["Opponent"]) == False:
+        return
+
+
+    # computer
+    # Step 8
+    # computer choice
+    choice = random.randint(0, 1)
+    # see if choice is 1
+    if choice:
+        # check if computer has no cooldown
+        if selected["Opponent"]["Turns_Since"] == 0:
+            print("\nSpecial Attack Used")
+            damage = random.randint(selected["Opponent"]["Special_Attack_Min"], selected["Opponent"]["Special_Attack_Max"])
+            selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
+            selected["Opponent"]["Turns_Since"] = selected["Opponent"]["Cooldown"]
+        # with a cooldown
+        else:
+            print("\nSpecial Attack Attempted.")
+            print("Basic Attack Used")
+            damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+            selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
+            selected["Opponent"]["Turns_Since"] -= 1
+    # basic attack
+    else:
+        print("\nBasic Attack Used")
+        damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+        selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
+        selected["Opponent"]["Turns_Since"] = max(0, selected["Opponent"]["Turns_Since"]-1)
+
+    print(f"\n{selected["Opponent"]["Name"]} did {damage} damage this round!")
+
+    print(f"{selected["Player"]["Name"]} has {selected["Player"]["Health"]} HP left.\n")
+
+    still_alive(selected["Player"])
+
+round = 1
+
+while selected["Player"]["Health"] > 0 and selected["Opponent"]["Health"] > 0:
+    # Step 4
+    print(f"ROUND {round}---------------------\n")
+
+    # Step 5
+    move = input("Select basic or special to attack: ").lower()
+    # Step 6
+    while move not in ["basic", "special"]:
+        move = input("Select 'basic' or 'special' to attack: ").lower()
+
+    is_special = (move == 'special')
+
+    player_turn(selected, is_special)
+
+    round += 1
+
+# Step 10
+print(f"You are victorious!") if player1[3] > 0 else print(f"Sorry player, {player2[0]} is victorious!")
