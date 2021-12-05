@@ -188,7 +188,7 @@ selected["Opponent"]["Armor"] = opponent_armor
 
 def still_alive(player):
     # array of death messages
-    death_messages = [f"Oh no, {player["Name"]} died", f"{player["Name"]} has died", f"{player["Name"]} has been defeated", f"{player["Name"]} loses in combat", f"{player["Name"]} falls to the ground", f"{player["Name"]} dies honorably"]
+    death_messages = [f"Oh no, {player['Name']} died", f"{player['Name']} has died", f"{player['Name']} has been defeated", f"{player['Name']} loses in combat", f"{player['Name']} falls to the ground", f"{player['Name']} dies honorably"]
     # check if health is 0
     if player["Health"] == 0:
         print(death_messages[random.randint(0, len(death_messages)-1)])
@@ -228,9 +228,9 @@ def player_turn(selected, attack_special):
         # decrease cooldown by one if not already at zero
         selected["Player"]["Turns_Since"] = max(0, selected["Player"]["Turns_Since"]-1)
 
-    print(f"\n{selected["Player"]["Name"]} did {damage} damage this round!")
+    print(f"\n{selected['Player']['Name']} did {damage} damage this round!")
 
-    print(f"{selected["Opponent"]["Name"]} has {selected["Opponent"]["Health"]} HP left.\n")
+    print(f"{selected['Opponent']['Name']} has {selected['Opponent']['Health']} HP left.\n")
 
     # stop function if player has reached zero health
     if still_alive(selected["Opponent"]) == False:
@@ -263,9 +263,9 @@ def player_turn(selected, attack_special):
         selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
         selected["Opponent"]["Turns_Since"] = max(0, selected["Opponent"]["Turns_Since"]-1)
 
-    print(f"\n{selected["Opponent"]["Name"]} did {damage} damage this round!")
+    print(f"\n{selected['Opponent']['Name']} did {damage} damage this round!")
 
-    print(f"{selected["Player"]["Name"]} has {selected["Player"]["Health"]} HP left.\n")
+    print(f"{selected['Player']['Name']} has {selected['Player']['Health']} HP left.\n")
 
     still_alive(selected["Player"])
 
@@ -288,4 +288,4 @@ while selected["Player"]["Health"] > 0 and selected["Opponent"]["Health"] > 0:
     round += 1
 
 # Step 10
-print(f"You are victorious!") if player1[3] > 0 else print(f"Sorry player, {player2[0]} is victorious!")
+print(f"You are victorious!") if selected["Player"]["Health"] > 0 else print(f"Sorry player, {selected['Opponent']['Name']} is victorious!")
