@@ -6,4 +6,4 @@
 <p>CPSC 230-08</p>
 
 # Deviations
-<p>Using the complex data type: using "j" instead of "i"</p>
+<p>Using the complex data type: using "j" instead of traditional "i"</p>
