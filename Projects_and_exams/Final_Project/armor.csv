@@ -1,4 +1,4 @@
-﻿Name,Block_Min,Block_Max,Chance
+﻿Name,Min_Block,Max_Block,Chance
 Leather,5,10,0.4
 Chainmail,5,10,0.4
 Steel,6,10,0.5

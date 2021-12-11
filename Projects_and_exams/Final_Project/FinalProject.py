@@ -154,7 +154,7 @@ armor_file.close()
 print("Here are your armor material options")
 
 for armor in armor_list:
-    print(f"{armor['Name']} which blocks {armor['Block_Min']} to {armor['Block_Max']} damage {armor['Chance']*100}% of the time")
+    print(f"{armor['Name']} which blocks {armor['Min_Block']} to {armor['Max_Block']} damage {armor['Chance']*100}% of the time")
     armor_names.append(armor['Name'])
 
 armor_choice = input("\nChoose armor for your character: ")
@@ -199,6 +199,8 @@ def still_alive(player):
 def player_turn(selected, attack_special):
     # player 1
     damage = 0
+    chance_block_opponent = random.uniform(0, 1)
+    chance_block_player = random.uniform(0, 1)
     # when special attack is chosen
     if attack_special:
         # determine if cooldown is zero
@@ -206,6 +208,11 @@ def player_turn(selected, attack_special):
             print("\nSpecial Attack Used")
             # assign random damage in range
             damage = random.randint(selected["Player"]["Special_Attack_Min"], selected["Player"]["Special_Attack_Max"])
+
+            if chance_block_opponent < selected["Opponent"]["Armor"]["Chance"]:
+                damage_block = random.randint(selected["Opponent"]["Armor"]["Min_Block"], selected["Opponent"]["Armor"]["Max_Block"])
+                damage = max(0, damage-damage_block)
+                print(f"{selected['Opponent']['Name']} blocked {damage_block} damage")
             # assign health to zero if health becomes negative
             selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
             # set cooldown to max
@@ -215,6 +222,12 @@ def player_turn(selected, attack_special):
             print("Basic Attack Used")
             # do random basic attack damage
             damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+
+            if chance_block_opponent < selected["Opponent"]["Armor"]["Chance"]:
+                damage_block = random.randint(selected["Opponent"]["Armor"]["Min_Block"], selected["Opponent"]["Armor"]["Max_Block"])
+                damage = max(0, damage-damage_block)
+                print(f"{selected['Opponent']['Name']} blocked {damage_block} damage")
+
             # assign health to zero if health becomes negative
             selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
             # decrease cooldown by one
@@ -223,6 +236,12 @@ def player_turn(selected, attack_special):
         print("\nBasic Attack Used")
         # do random basic attack damage
         damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+
+        if chance_block_opponent < selected["Opponent"]["Armor"]["Chance"]:
+            damage_block = random.randint(selected["Opponent"]["Armor"]["Min_Block"], selected["Opponent"]["Armor"]["Max_Block"])
+            damage = max(0, damage-damage_block)
+            print(f"{selected['Opponent']['Name']} blocked {damage_block} damage")
+
         # assign health to zero if health becomes negative
         selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
         # decrease cooldown by one if not already at zero
@@ -238,7 +257,6 @@ def player_turn(selected, attack_special):
 
 
     # computer
-    # Step 8
     # computer choice
     choice = random.randint(0, 1)
     # see if choice is 1
@@ -247,6 +265,12 @@ def player_turn(selected, attack_special):
         if selected["Opponent"]["Turns_Since"] == 0:
             print("\nSpecial Attack Used")
             damage = random.randint(selected["Opponent"]["Special_Attack_Min"], selected["Opponent"]["Special_Attack_Max"])
+
+            if chance_block_player < selected["Player"]["Armor"]["Chance"]:
+                damage_block = random.randint(selected["Player"]["Armor"]["Min_Block"], selected["Player"]["Armor"]["Max_Block"])
+                damage = max(0, damage-damage_block)
+                print(f"{selected['Player']['Name']} blocked {damage_block} damage")
+
             selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
             selected["Opponent"]["Turns_Since"] = selected["Opponent"]["Cooldown"]
         # with a cooldown
@@ -254,12 +278,24 @@ def player_turn(selected, attack_special):
             print("\nSpecial Attack Attempted.")
             print("Basic Attack Used")
             damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+
+            if chance_block_player < selected["Player"]["Armor"]["Chance"]:
+                damage_block = random.randint(selected["Player"]["Armor"]["Min_Block"], selected["Player"]["Armor"]["Max_Block"])
+                damage = max(0, damage-damage_block)
+                print(f"{selected['Player']['Name']} blocked {damage_block} damage")
+
             selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
             selected["Opponent"]["Turns_Since"] -= 1
     # basic attack
     else:
         print("\nBasic Attack Used")
         damage = random.randint(selected["Player"]["Weapon"]["Damage_Min"], selected["Player"]["Weapon"]["Damage_Max"])
+
+        if chance_block_player < selected["Player"]["Armor"]["Chance"]:
+            damage_block = random.randint(selected["Player"]["Armor"]["Min_Block"], selected["Player"]["Armor"]["Max_Block"])
+            damage = max(0, damage-damage_block)
+            print(f"{selected['Player']['Name']} blocked {damage_block} damage")
+
         selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
         selected["Opponent"]["Turns_Since"] = max(0, selected["Opponent"]["Turns_Since"]-1)
 
@@ -272,12 +308,10 @@ def player_turn(selected, attack_special):
 round = 1
 
 while selected["Player"]["Health"] > 0 and selected["Opponent"]["Health"] > 0:
-    # Step 4
     print(f"ROUND {round}---------------------\n")
 
-    # Step 5
     move = input("Select basic or special to attack: ").lower()
-    # Step 6
+
     while move not in ["basic", "special"]:
         move = input("Select 'basic' or 'special' to attack: ").lower()
 
@@ -287,5 +321,4 @@ while selected["Player"]["Health"] > 0 and selected["Opponent"]["Health"] > 0:
 
     round += 1
 
-# Step 10
 print(f"You are victorious!") if selected["Player"]["Health"] > 0 else print(f"Sorry player, {selected['Opponent']['Name']} is victorious!")
