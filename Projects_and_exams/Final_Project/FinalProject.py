@@ -206,15 +206,19 @@ def player_turn(selected, attack_special):
         # determine if cooldown is zero
         if selected["Player"]["Turns_Since"] == 0:
             print("\nSpecial Attack Used")
+            heal = random.randint(0, 10)
+            if heal <= 2:
+                print("You have healed your opponent")
+                damage = -2
             # assign random damage in range
-            damage = random.randint(selected["Player"]["Special_Attack_Min"], selected["Player"]["Special_Attack_Max"])
-
-            if chance_block_opponent < selected["Opponent"]["Armor"]["Chance"]:
-                damage_block = random.randint(selected["Opponent"]["Armor"]["Min_Block"], selected["Opponent"]["Armor"]["Max_Block"])
-                damage = max(0, damage-damage_block)
-                print(f"{selected['Opponent']['Name']} blocked {damage_block} damage")
+            else:
+                damage = random.randint(selected["Player"]["Special_Attack_Min"], selected["Player"]["Special_Attack_Max"])
+                if chance_block_opponent < selected["Opponent"]["Armor"]["Chance"]:
+                    damage_block = random.randint(selected["Opponent"]["Armor"]["Min_Block"], selected["Opponent"]["Armor"]["Max_Block"])
+                    damage = max(0, damage-damage_block)
+                    print(f"{selected['Opponent']['Name']} blocked {damage_block} damage")
             # assign health to zero if health becomes negative
-            selected["Opponent"]["Health"] = max(0, selected["Opponent"]["Health"]-damage)
+            selected["Opponent"]["Health"] = max(0, min(100, selected["Opponent"]["Health"]-damage))
             # set cooldown to max
             selected["Player"]["Turns_Since"] = selected["Player"]["Cooldown"]
         else:
@@ -247,7 +251,10 @@ def player_turn(selected, attack_special):
         # decrease cooldown by one if not already at zero
         selected["Player"]["Turns_Since"] = max(0, selected["Player"]["Turns_Since"]-1)
 
-    print(f"\n{selected['Player']['Name']} did {damage} damage this round!")
+    if damage < 0:
+        print(f"\n{selected['Player']['Name']} healed 2 points this round!")
+    else:
+        print(f"\n{selected['Player']['Name']} did {damage} damage this round!")
 
     print(f"{selected['Opponent']['Name']} has {selected['Opponent']['Health']} HP left.\n")
 
@@ -264,14 +271,19 @@ def player_turn(selected, attack_special):
         # check if computer has no cooldown
         if selected["Opponent"]["Turns_Since"] == 0:
             print("\nSpecial Attack Used")
-            damage = random.randint(selected["Opponent"]["Special_Attack_Min"], selected["Opponent"]["Special_Attack_Max"])
+            heal = random.randint(0, 10)
+            if heal <= 2:
+                print("You have healed your opponent")
+                damage = -2
+            else:
+                damage = random.randint(selected["Opponent"]["Special_Attack_Min"], selected["Opponent"]["Special_Attack_Max"])
 
-            if chance_block_player < selected["Player"]["Armor"]["Chance"]:
-                damage_block = random.randint(selected["Player"]["Armor"]["Min_Block"], selected["Player"]["Armor"]["Max_Block"])
-                damage = max(0, damage-damage_block)
-                print(f"{selected['Player']['Name']} blocked {damage_block} damage")
+                if chance_block_player < selected["Player"]["Armor"]["Chance"]:
+                    damage_block = random.randint(selected["Player"]["Armor"]["Min_Block"], selected["Player"]["Armor"]["Max_Block"])
+                    damage = max(0, damage-damage_block)
+                    print(f"{selected['Player']['Name']} blocked {damage_block} damage")
 
-            selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
+            selected["Player"]["Health"] = max(0, min(100, selected["Player"]["Health"]-damage))
             selected["Opponent"]["Turns_Since"] = selected["Opponent"]["Cooldown"]
         # with a cooldown
         else:
@@ -299,7 +311,10 @@ def player_turn(selected, attack_special):
         selected["Player"]["Health"] = max(0, selected["Player"]["Health"]-damage)
         selected["Opponent"]["Turns_Since"] = max(0, selected["Opponent"]["Turns_Since"]-1)
 
-    print(f"\n{selected['Opponent']['Name']} did {damage} damage this round!")
+    if damage < 0:
+        print(f"\n{selected['Player']['Name']} healed 2 points this round!")
+    else:
+        print(f"\n{selected['Player']['Name']} did {damage} damage this round!")
 
     print(f"{selected['Player']['Name']} has {selected['Player']['Health']} HP left.\n")
 
