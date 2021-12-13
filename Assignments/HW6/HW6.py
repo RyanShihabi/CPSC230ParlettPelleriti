@@ -9,15 +9,15 @@ class Complex:
     # add function with parameters for instance variables and another class object
     def add(self, other):
         # returning the complex values of real and imaginary instance and the other class variables
-        return complex(self.real, self.imaginary) + complex(other.real, other.imaginary)
+        return f"{self.real + other.real}+{self.imaginary + other.imaginary}i"
 
     # multiply function with parameters for instance variables and another class object
     def multiply(self, other):
-        return complex(self.real, self.imaginary) * complex(other.real, other.imaginary)
+        return f"{(self.real * other.real) - (self.imaginary * other.imaginary)}+{(self.real * other.imaginary) + (self.imaginary * other.real)}i"
 
     # sqaure function with parameters for instance variables
     def square(self):
-        return complex(self.real, self.imaginary)**2
+        return f"{(self.real * self.real) - (self.imaginary * self.imaginary)}+{(self.real * self.imaginary) + (self.imaginary * self.real)}i"
 
 
 def main():
