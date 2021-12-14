@@ -1,6 +1,7 @@
 import csv
 import random
 
+# setting stat variables
 player = {}
 weapon = {}
 armor = {}
@@ -14,6 +15,7 @@ armor_list = []
 armor_names = []
 cancelled = []
 
+# reading player info
 with open("players.csv", "r") as player_file:
     player_info = csv.reader(player_file, delimiter=",")
     line_count = 0
@@ -33,22 +35,28 @@ with open("players.csv", "r") as player_file:
 
 player_file.close()
 
+# prompting player
 print("Welcome!")
 print("Your options are\n")
 
+# showing player options
 for person in player_list:
     print(f"{person['Name']} the {person['Class']}")
     names.append(person["Name"])
 
+# grabbing player selection
 choice = input("\nWho would you like to play?\n")
 
+# keep prompting until user chooses an existing player
 while choice not in names:
     choice = input("\nOnly enter the name of who would you like to play?\n")
 
+# grabbing a player for the computer
 opponent = names[random.randint(0, len(names)-1)]
 while opponent == choice:
     opponent = names[random.randint(0, len(names)-1)]
 
+# assigning the player dictionary to the name
 for person in player_list:
     if person["Name"] == opponent:
         selected["Opponent"] = person
@@ -57,6 +65,7 @@ for person in player_list:
 
 print(f"Your opponent is {selected['Opponent']['Name']} the {selected['Opponent']['Class']}\n")
 
+# iterating through weapons file
 with open("weapons.csv", "r") as weapon_file:
     weapon_info = csv.reader(weapon_file, delimiter=",")
     line_count = 0
@@ -78,13 +87,15 @@ weapon_file.close()
 
 print("Here are your weapon choices:")
 
-# print(weapon_list)
-
+# Listing weapon info
 for weapon in weapon_list:
     print(f"{weapon['Name']} which does {weapon['Damage_Min']} to {weapon['Damage_Max']} damage and is ideal for a {weapon['Ideal']}")
     weapon_names.append(weapon['Name'])
 
+# asking for weapon choice
 weapon_choice = input("\nChoose a weapon for your character: ")
+
+# keep prompting until existing weapon is found
 while weapon_choice not in weapon_names:
     weapon_choice = input("\nOnly enter the name to choose a weapon for your character: \n")
 
@@ -93,6 +104,7 @@ for weapon in weapon_list:
         weapon_choice = weapon
         break
 
+# making sure the weapon ideal class matches the class of the player
 while weapon_choice["Ideal"] != selected["Player"]["Class"]:
     if weapon_choice["Name"] not in weapon_names:
         weapon_choice = input("\nOnly enter the name to choose a weapon for your character: ")
@@ -104,8 +116,10 @@ while weapon_choice["Ideal"] != selected["Player"]["Class"]:
             weapon_choice = weapon
             break
 
+# assign weapon to player dictionary
 selected["Player"]["Weapon"] = weapon_choice
 
+# randomly assigning a weapon for the computer that also matches their ideal class
 opponent_weapon = weapon_list[random.randint(0, len(weapon_list))-1]
 while opponent_weapon == choice:
     opponent_weapon = weapon_list[random.randint(0, len(weapon_list)-1)]
@@ -126,10 +140,12 @@ for weapon in weapon_list:
         opponent_weapon = weapon
         break
 
+# assigning weapon to opponent dictionary
 selected["Opponent"]["Weapon"] = opponent_weapon
 
 print(f"Opponent is using {selected['Opponent']['Weapon']['Name']}\n")
 
+# iterating through armor file
 with open("armor.csv", "r") as armor_file:
     armor_info = csv.reader(armor_file, delimiter=",")
     line_count = 0
@@ -153,11 +169,15 @@ armor_file.close()
 
 print("Here are your armor material options")
 
+# listing armor options
 for armor in armor_list:
     print(f"{armor['Name']} which blocks {armor['Min_Block']} to {armor['Max_Block']} damage {armor['Chance']*100}% of the time")
     armor_names.append(armor['Name'])
 
+# input for armor choice
 armor_choice = input("\nChoose armor for your character: ")
+
+# making sure choice exists
 while armor_choice not in armor_names:
     armor_choice = input("\nOnly enter the name to choose armor for your character: \n")
 
@@ -168,6 +188,7 @@ for armor in armor_list:
 
 selected["Player"]["Armor"] = armor_choice
 
+# randomly selecting armor for computer
 opponent_armor = armor_list[random.randint(0, len(armor_list)-1)]
 while opponent_armor == choice:
     opponent_armor = armor_list[random.randint(0, len(armor_list)-1)]
@@ -186,6 +207,7 @@ while opponent_armor["Name"] == selected["Player"]["Armor"]["Name"]:
 
 selected["Opponent"]["Armor"] = opponent_armor
 
+# checks if either player is still alive in battle
 def still_alive(player):
     # array of death messages
     death_messages = [f"Oh no, {player['Name']} died", f"{player['Name']} has died", f"{player['Name']} has been defeated", f"{player['Name']} loses in combat", f"{player['Name']} falls to the ground", f"{player['Name']} dies honorably"]
@@ -195,10 +217,11 @@ def still_alive(player):
         return False
     return True
 
-# Step 7
+# goes over one round/iteration of the battle
 def player_turn(selected, attack_special):
     # player 1
     damage = 0
+    # calculating block chances for both players
     chance_block_opponent = random.uniform(0, 1)
     chance_block_player = random.uniform(0, 1)
     # when special attack is chosen
@@ -206,6 +229,7 @@ def player_turn(selected, attack_special):
         # determine if cooldown is zero
         if selected["Player"]["Turns_Since"] == 0:
             print("\nSpecial Attack Used")
+            # random heal chance
             heal = random.randint(0, 10)
             if heal <= 2:
                 print("You have healed your opponent")
@@ -262,7 +286,6 @@ def player_turn(selected, attack_special):
     if still_alive(selected["Opponent"]) == False:
         return
 
-
     # computer
     # computer choice
     choice = random.randint(0, 1)
@@ -271,6 +294,7 @@ def player_turn(selected, attack_special):
         # check if computer has no cooldown
         if selected["Opponent"]["Turns_Since"] == 0:
             print("\nSpecial Attack Used")
+            # random heal chance
             heal = random.randint(0, 10)
             if heal <= 2:
                 print("You have healed your opponent")
